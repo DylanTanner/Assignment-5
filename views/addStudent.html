@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="/css/theme.css">
+    <title>WEB700</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Student</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="theme.css"> <!-- Include custom theme styles -->
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">College System</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/htmlDemo">HTML Demo</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/about">About</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/addStudent">Add Student</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    
+    <main class="col-md-12">
+        <form action="/addStudent" method="POST">
+            <div class="form-group">
+                <label>First Name:</label>
+                <input class="form-control" name="firstName" type="text" required>
+            </div>
+            <div class="form-group">
+                <label>Last Name:</label>
+                <input class="form-control" name="lastName" type="text" required>
+            </div>
+            <div class="form-group">
+                <label>Student Number:</label>
+                <input class="form-control" name="studentNum" type="number" required>
+            </div>
+            <div class="form-group">
+                <label>Course:</label>
+                <input class="form-control" name="course" type="text" required>
+            </div>
+            <div class="form-group">
+                <label>Email:</label>
+                <input class="form-control" name="email" type="email" required>
+            </div>
+            <div class="form-group">
+                <label>Address Street:</label>
+                <input class="form-control" name="addressStreet" type="text" required>
+            </div>
+            <div class="form-group">
+                <label>Address City:</label>
+                <input class="form-control" name="addressCity" type="text" required>
+            </div>
+            <div class="form-group">
+                <label>Address Province:</label>
+                <input class="form-control" name="addressProvince" type="text" required>
+            </div>
+            <div class="form-group">
+                <label>TA:</label>
+                <input class="form-check-input" name="TA" type="checkbox">
+            </div>
+            <div class="form-group">
+                <label>Status:</label>
+                <select class="form-control" name="status" required>
+                    <option value="Full Time">Full Time</option>
+                    <option value="Part Time">Part Time</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </main>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

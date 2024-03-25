@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="/css/theme.css">
+    <title>WEB700</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Rosco Tanner</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="/about">About</a></li>
+                <li class="nav-item active"><a class="nav-link" href="/htmlDemo">Html Demo</a></li>
+                <li class="nav-item"><a class="nav-link" href="/addStudent">Add Student</a></li>
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a class="nav-link" href="/students">Students</a></li>
+                <li class="nav-item"><a class="nav-link" href="/tas">Teaching Assistants</a></li>
+                <li class="nav-item"><a class="nav-link" href="/courses">Courses</a></li>
+                <!-- Add Student Link -->
+                
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="row">
+            <main class="col-md-12">
+                <!-- Start your code here -->
+                <section>
+                    <h1>HTML Demo</h1>
+                    <h2>Tables</h2>
+                    <table border="1">
+                        <caption>Student Information</caption>
+                        <thead>
+                            <tr>
+                                <th>Student ID</th>
+                                <th>Name</th>
+                                <th>Course</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>126154236</td>
+                                <td>Rosco Tanner</td>
+                                <td>WEB700</td>
+                            </tr>
+                            <tr>
+                                <td>123456789</td>
+                                <td>Maleesha Perera</td>
+                                <td>WEB700</td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="3">Total Students: 2</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    <table border="1">
+                        <caption>Course Details</caption>
+                        <thead>
+                            <tr>
+                                <th>Course Code</th>
+                                <th>Course Name</th>
+                                <th>Instructor</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>WEB700</td>
+                                <td>Web Programming</td>
+                                <td>Prof. Priteshkumar Patel</td>
+                            </tr>
+                            <tr>
+                                <td>DBS710</td>
+                                <td>Advanced Database Design</td>
+                                <td>Prof. Safoura Janosepah</td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="3">Total Courses: 2</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    <p>This section contains HTML tables with student and course information.</p>
+                </section>
+				<section>
+					<h2>Lists</h2>
+					<h3>Things To Do On a Lazy Sunday Afternoon:</h3>
+					<ul>
+						<li>Read a book under a shady tree in the park</li>
+						<li>Take a leisurely stroll along the riverside</li>
+						<li>
+							Have a picnic with friends and family
+							<ul>
+								<li>Bring sandwiches, fruit, and homemade lemonade</li>
+								<li>Don't forget the frisbee for some fun!</li>
+								<li>Play your favorite tunes and enjoy the sunshine</li>
+							</ul>
+						</li>
+						<li>Watch a classic movie marathon</li>
+						<li>Experiment with a new recipe in the kitchen</li>
+					</ul>
+					<p>There's nothing quite like a lazy Sunday to recharge and rejuvenate!</p>
+				</section>
+				<section>
+                    <h2>Images</h2>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/69/Snowboarder_in_halfpipe.jpg" alt="Snowboarder">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/0/0b/Canadian_Pacific_Railway_Mountain.jpg" alt="Mountain">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/1/19/All_Blacks_vs_France_%28France_vs_All_Blacks_Test_Match%2C_2013%29_-_Wellington_1.jpg" alt="Rugby">
+                    <p>This section contains HTML images.</p>
+                </section>
+                <section>
+                    <h2>Audio</h2>
+                    <audio controls>
+                        <source src="https://pat-crawford-sdds.netlify.app/shared/fall-2021/web700/A3/sample-audio.mp3" type="audio/mpeg">
+                        <source src="https://pat-crawford-sdds.netlify.app/shared/fall-2021/web700/A3/sample-audio.ogg" type="audio/ogg">
+                        Your browser does not support the audio element.
+                    </audio>
+                    <p>This section contains HTML audio.</p>
+                </section>
+                <section>
+                    <h2>Video</h2>
+                    <video controls>
+                        <source src="https://pat-crawford-sdds.netlify.app/shared/fall-2021/web700/A3/sample-video.mp4" type="video/mp4">
+                        <source src="https://pat-crawford-sdds.netlify.app/shared/fall-2021/web700/A3/sample-video.ogg" type="video/ogg">
+                        <source src="https://pat-crawford-sdds.netlify.app/shared/fall-2021/web700/A3/sample-video.webm" type="video/webm">
+                        Your browser does not support the video element.
+                    </video>
+                    <p>This section contains HTML video.</p>
+                </section>
+                <!-- End your code here -->
+            </main>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>
