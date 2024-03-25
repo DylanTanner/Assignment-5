@@ -13,13 +13,13 @@ module.exports.initialize = function () {
     return new Promise((resolve, reject) => {
         fs.readFile('./data/courses.json', 'utf8', (err, courseData) => {
             if (err) {
-                reject("unable to load courses");
+                reject("Unable to load courses");
                 return;
             }
 
             fs.readFile('./data/students.json', 'utf8', (err, studentData) => {
                 if (err) {
-                    reject("unable to load students");
+                    reject("Unable to load students");
                     return;
                 }
 
@@ -33,20 +33,26 @@ module.exports.initialize = function () {
 module.exports.getAllStudents = function () {
     return new Promise((resolve, reject) => {
         if (dataCollection.students.length === 0) {
-            reject("query returned 0 results");
+            reject("Query returned 0 results");
             return;
         }
 
         resolve(dataCollection.students);
-    });
+    })
 }
 
 module.exports.getTAs = function () {
     return new Promise((resolve, reject) => {
-        const filteredStudents = dataCollection.students.filter(student => student.TA);
+        var filteredStudents = [];
+
+        for (let i = 0; i < dataCollection.students.length; i++) {
+            if (dataCollection.students[i].TA === true) {
+                filteredStudents.push(dataCollection.students[i]);
+            }
+        }
 
         if (filteredStudents.length === 0) {
-            reject("query returned 0 results");
+            reject("Query returned 0 results");
             return;
         }
 
@@ -57,7 +63,7 @@ module.exports.getTAs = function () {
 module.exports.getCourses = function () {
     return new Promise((resolve, reject) => {
         if (dataCollection.courses.length === 0) {
-            reject("query returned 0 results");
+            reject("Query returned 0 results");
             return;
         }
 
@@ -67,10 +73,16 @@ module.exports.getCourses = function () {
 
 module.exports.getStudentByNum = function (num) {
     return new Promise((resolve, reject) => {
-        const foundStudent = dataCollection.students.find(student => student.studentNum === num);
+        var foundStudent = null;
+
+        for (let i = 0; i < dataCollection.students.length; i++) {
+            if (dataCollection.students[i].studentNum === num) {
+                foundStudent = dataCollection.students[i];
+            }
+        }
 
         if (!foundStudent) {
-            reject("query returned 0 results");
+            reject("Query returned 0 results");
             return;
         }
 
@@ -80,10 +92,16 @@ module.exports.getStudentByNum = function (num) {
 
 module.exports.getStudentsByCourse = function (course) {
     return new Promise((resolve, reject) => {
-        const filteredStudents = dataCollection.students.filter(student => student.course === course);
+        var filteredStudents = [];
+
+        for (let i = 0; i < dataCollection.students.length; i++) {
+            if (dataCollection.students[i].course === course) {
+                filteredStudents.push(dataCollection.students[i]);
+            }
+        }
 
         if (filteredStudents.length === 0) {
-            reject("query returned 0 results");
+            reject("Query returned 0 results");
             return;
         }
 
@@ -93,13 +111,58 @@ module.exports.getStudentsByCourse = function (course) {
 
 module.exports.addStudent = function (studentData) {
     return new Promise((resolve, reject) => {
-        if (studentData.TA === undefined) {
-            studentData.TA = false;
-        } else {
-            studentData.TA = true;
-        }
+        // Set TA flag based on studentData.TA value
+        studentData.TA = studentData.TA ? true : false;
+
+        // Set the studentNum property
         studentData.studentNum = dataCollection.students.length + 1;
+
+        // Push the updated studentData to the students array
         dataCollection.students.push(studentData);
+
         resolve();
+    });
+}
+
+module.exports.updateStudent = function (studentData) {
+    return new Promise((resolve, reject) => {
+        // Find the student with the matching studentNum
+        let student = dataCollection.students.find(s => s.studentNum === studentData.studentNum);
+        if (student) {
+            // Update the student's properties
+            student.firstName = studentData.firstName || student.firstName;
+            student.lastName = studentData.lastName || student.lastName;
+            student.email = studentData.email || student.email;
+            student.addressStreet = studentData.addressStreet || student.addressStreet;
+            student.addressCity = studentData.addressCity || student.addressCity;
+            student.addressProvince = studentData.addressProvince || student.addressProvince;
+            student.TA = studentData.TA === "on"; // Check if the checkbox was checked
+            student.course = studentData.course || student.course;
+            student.status = studentData.status || student.status;
+
+            // Write the updated students array to the students.json file
+            fs.writeFile('./data/students.json', JSON.stringify(dataCollection.students), err => {
+                if (err) {
+                    reject('Unable to save student update.');
+                } else {
+                    resolve();
+                }
+            });
+        } else {
+            reject('Student not found');
+        }
+    });
+};
+
+module.exports.getCourseById = function (id) {
+    return new Promise((resolve, reject) => {
+        // Find the course with the course id matching the input:
+        for (const singleCourse of dataCollection.courses) {
+            if (singleCourse.courseId === id) {
+                resolve(singleCourse);
+                return; // Ensure that the function exits after resolving a course
+            }
+        }
+        reject("Error: No results returned");
     });
 };
