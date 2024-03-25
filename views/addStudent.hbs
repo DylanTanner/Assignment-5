@@ -1,0 +1,114 @@
+<div class="container">
+    <div class="row">
+        <main class="col-md-12">
+
+            <!-- Start your code here -->
+            
+            <form method="POST" action="/students/add">
+                <fieldset>
+                    <legend>Personal Information</legend>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>First Name:</label>
+                                <input class="form-control" name="firstName" type="text" />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Last Name:</label>
+                                <input class="form-control" name="lastName" type="text"  />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Email:</label>
+                                <input class="form-control" name="email" type="email" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Address (Street):</label>
+                                <input class="form-control" name="addressStreet" type="text" />
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Address (City):</label>
+                                <input class="form-control" name="addressCity" type="text" />
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Address (Province):</label>
+                                <input class="form-control" name="addressProvince" type="text" />
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <legend>Academic Information</legend>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label>College Employment:</label><br />
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="TA">
+                                <label class="form-check-label" for="TA">
+                                    Teaching Assistant
+                                </label>
+                            </div>
+                            <br />
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Enrollment Status:</label><br />
+                                <label class="checkbox-inline">
+                                    <input type="radio" value="Full Time" /> Full Time
+                                </label>
+                                <label class="checkbox-inline">
+                                    <input type="radio" value="Part Time" /> Part Time
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="course">Enrolled in Course:</label>
+                                <select class="form-control" id="course">
+                                    <option value="Advanced Database Design">Advanced Database Design</option>
+                                    <option value="Traditional Networks">Traditional Networks</option>
+                                    <option value="Administration of Open Source Systems">Administration of Open Source Systems</option>
+                                    <option value="Administration of Microsoft Systems">Administration of Microsoft Systems</option>
+                                    <option value="IT Project Management, Fundamentals, Tools and Techniques">IT Project Management, Fundamentals, Tools and Techniques</option>
+                                    <option value="Web Programming">Web Programming</option>
+                                    <option value="Leadership for Managers">Leadership for Managers</option>
+                                    <option value="Advanced Administration of Open Systems">Advanced Administration of Open Systems</option>
+                                    <option value="Advanced Administration of Microsoft Systems">Advanced Administration of Microsoft Systems</option>
+                                    <option value="Programming Project">Programming Project</option>
+                                    <option value="Quality Assurance and Troubleshoot">Quality Assurance and Troubleshoot</option>
+                                    <option value="Security in Databases and Web Applications">Security in Databases and Web Applications</option>
+                                    <option value="Work Term Preparation">Work Term Preparation</option>
+                                    <option value="Business Information Technology, Work Term">Business Information Technology, Work Term</option>
+                                    <option value="Enterprise Project">Enterprise Project</option>
+                                    <option value="Assessing Big Data">Assessing Big Data</option>
+                                    <option value="Law and Ethics">Law and Ethics</option>
+                                    <option value="Security Operations and Administration">Security Operations and Administration</option>
+                                    <option value="Service Oriented Architecture">Service Oriented Architecture</option>
+                                    <option value="Technology Planning and Acquisition">Technology Planning and Acquisition</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+                <hr />
+                <input type="submit" class="btn btn-primary float-right" value="Add Student" /><br /><br /><br />
+            </form>
+            
+            <!-- End your code here -->
+
+        </main>
+    </div>
+</div>

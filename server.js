@@ -10,15 +10,16 @@
 ********************************************************************************/ 
 
 // Required modules
-var express = require("express");
-var app = express();
-var path = require("path");
-var collegeData = require("./modules/collegeData.js");
-var bodyParser = require("body-parser");
+const express = require("express");
+const app = express();
+const path = require("path");
+const collegeData = require("./modules/collegeData.js");
+const bodyParser = require("body-parser");
+const exphbs = require('express-handlebars');
 
 // Define the path to the public and views folders
-var publicPath = path.join(__dirname, "public");
-var viewsPath = path.join(__dirname, "views");
+const publicPath = path.join(__dirname, "public");
+const viewsPath = path.join(__dirname, "views");
 
 // Serve static files from the public directory
 app.use(express.static(publicPath));
@@ -26,11 +27,17 @@ app.use(express.static(publicPath));
 // Body parser middleware
 app.use(bodyParser.urlencoded({ extended: true }));
 
+// Configure Express Handlebars as the view engine
+app.engine('hbs', exphbs({ 
+    extname: '.hbs', 
+    defaultLayout: 'main',
+}));
+app.set('view engine', 'hbs');
+
 // Initialize college data
 collegeData.initialize()
     .then(() => {
         // Routes
-
         // GET /students
         app.get("/students", (req, res) => {
             let course = req.query.course;
@@ -150,7 +157,7 @@ collegeData.initialize()
         });
 
         // Start the server
-        var HTTP_PORT = process.env.PORT || 8080;
+        const HTTP_PORT = process.env.PORT || 8080;
         app.listen(HTTP_PORT, () => {
             console.log("Server listening on port: " + HTTP_PORT);
         });
