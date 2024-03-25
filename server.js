@@ -6,7 +6,15 @@
 * 
 *  Name: Rosco Taner____________ Student ID: 126154236___ Date:3/25/2024 _______________
 *  Online (Cycliic) Link: https://courageous-houndstooth-seal.cyclic.app/
+Now the cyclic is not working after I tried to create a new app. Below is the error I get:
 
+We've reached our maximum beta capacity (for now)
+Meanwhile, we've added you to the wait list and saved your spot in line!
+
+Give us some feedback or check up on what we're up to:
+
+Reach out to us on discord 
+Email us at hello@cyclic.sh 
 ********************************************************************************/ 
 
 // Required modules
@@ -17,55 +25,49 @@ const collegeData = require("./modules/collegeData.js");
 const bodyParser = require("body-parser");
 const exphbs = require('express-handlebars');
 
-// Define the path to the public and views folders
+// Define paths
 const publicPath = path.join(__dirname, "public");
 const viewsPath = path.join(__dirname, "views");
 
-// Serve static files from the public directory
+// Serve static files
 app.use(express.static(publicPath));
 
-// Body parser middleware
+// Middleware for parsing request bodies
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// Configure Express Handlebars as the view engine
-app.engine('hbs', exphbs({ 
+// Set up Express Handlebars as the view engine
+app.engine('.hbs', exphbs({ 
     extname: '.hbs', 
     defaultLayout: 'main',
+    layoutsDir: path.join(viewsPath, 'layouts'),
+    partialsDir: path.join(viewsPath, 'partials')
 }));
-app.set('view engine', 'hbs');
+app.set('view engine', '.hbs');
 
 // Initialize college data
 collegeData.initialize()
     .then(() => {
-        // Routes
+        // Routes handling
         // GET /students
         app.get("/students", (req, res) => {
             let course = req.query.course;
             if (course) {
                 collegeData.getStudentsByCourse(course)
                     .then(students => {
-                        if (students.length > 0) {
-                            res.json(students);
-                        } else {
-                            res.json({ message: "no results" });
-                        }
+                        res.render('students', { students: students });
                     })
                     .catch(err => {
                         console.error(err);
-                        res.status(500).json({ error: "Internal Server Error" });
+                        res.status(500).render('error', { message: "Internal Server Error" });
                     });
             } else {
                 collegeData.getAllStudents()
                     .then(students => {
-                        if (students.length > 0) {
-                            res.json(students);
-                        } else {
-                            res.json({ message: "no results" });
-                        }
+                        res.render('students', { students: students });
                     })
                     .catch(err => {
                         console.error(err);
-                        res.status(500).json({ error: "Internal Server Error" });
+                        res.status(500).render('error', { message: "Internal Server Error" });
                     });
             }
         });
@@ -74,15 +76,11 @@ collegeData.initialize()
         app.get("/tas", (req, res) => {
             collegeData.getTAs()
                 .then(tas => {
-                    if (tas.length > 0) {
-                        res.json(tas);
-                    } else {
-                        res.json({ message: "no results" });
-                    }
+                    res.render('tas', { tas: tas });
                 })
                 .catch(err => {
                     console.error(err);
-                    res.status(500).json({ error: "Internal Server Error" });
+                    res.status(500).render('error', { message: "Internal Server Error" });
                 });
         });
 
@@ -90,15 +88,11 @@ collegeData.initialize()
         app.get("/courses", (req, res) => {
             collegeData.getCourses()
                 .then(courses => {
-                    if (courses.length > 0) {
-                        res.json(courses);
-                    } else {
-                        res.json({ message: "no results" });
-                    }
+                    res.render('courses', { courses: courses });
                 })
                 .catch(err => {
                     console.error(err);
-                    res.status(500).json({ error: "Internal Server Error" });
+                    res.status(500).render('error', { message: "Internal Server Error" });
                 });
         });
 
@@ -107,36 +101,32 @@ collegeData.initialize()
             let num = req.params.num;
             collegeData.getStudentByNum(num)
                 .then(student => {
-                    if (student) {
-                        res.json(student);
-                    } else {
-                        res.json({ message: "no results" });
-                    }
+                    res.render('student', { student: student });
                 })
                 .catch(err => {
                     console.error(err);
-                    res.status(500).json({ error: "Internal Server Error" });
+                    res.status(500).render('error', { message: "Internal Server Error" });
                 });
         });
 
         // GET /htmlDemo
         app.get("/htmlDemo", (req, res) => {
-            res.sendFile(path.join(viewsPath, "htmlDemo.html"));
+            res.render('htmlDemo');
         });
 
         // GET /about
         app.get("/about", (req, res) => {
-            res.sendFile(path.join(viewsPath, "about.html"));
+            res.render('about');
         });
 
         // GET /
         app.get("/", (req, res) => {
-            res.sendFile(path.join(viewsPath, "home.html"));
+            res.render('home');
         });
 
         // GET /addStudent
         app.get("/addStudent", (req, res) => {
-            res.sendFile(path.join(__dirname, "views", "addStudent.html"));
+            res.render('addStudent');
         });
 
         // POST /addStudent
@@ -147,13 +137,13 @@ collegeData.initialize()
                 })
                 .catch(err => {
                     console.error(err);
-                    res.status(500).json({ error: "Internal Server Error" });
+                    res.status(500).render('error', { message: "Internal Server Error" });
                 });
         });
 
-        // No matching route
+        // Handling unmatched routes
         app.use((req, res) => {
-            res.status(404).send("Page Not Found");
+            res.status(404).render('error', { message: "Page Not Found" });
         });
 
         // Start the server
